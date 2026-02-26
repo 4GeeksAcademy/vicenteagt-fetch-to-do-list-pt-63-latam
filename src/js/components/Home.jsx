@@ -3,6 +3,7 @@ import React from "react";
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
 import { ToDoList } from "./ToDoList.jsx";
+import { Api } from "./Api.jsx";
 //create your first component
 const Home = () => {
 	return (
@@ -15,8 +16,9 @@ const Home = () => {
 
 				</div>
 <ToDoList/>
-
+<Api/>
 		 </div>
+		
 	);
 };
 
