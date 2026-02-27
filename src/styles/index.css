@@ -74,3 +74,16 @@ background-color: white;
 .hiddenDiv{
     display: none;
 }
+
+.btnColor {
+    background-color:  rgba(190, 64, 64, 0.566);
+    font-weight: 400;
+}
+
+.btnEliminate{
+     outline: none;  
+}
+
+.btnEliminate:active{
+     outline: none;  
+}
