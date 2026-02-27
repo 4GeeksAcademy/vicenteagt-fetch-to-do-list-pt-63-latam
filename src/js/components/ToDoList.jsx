@@ -72,7 +72,7 @@ export const ToDoList = () => {
 
     };
 
-    const elimiteTask = (id) => {
+    const deleteTask = (id) => {
 
         fetch(API_URL + "/todos/" + id, {
             method: "DELETE"
@@ -82,6 +82,8 @@ export const ToDoList = () => {
             .catch((error) => console.log("error:", error));
 
         getMyUser();
+
+
     };
 
     const deleteAllTasks = () => {
@@ -137,12 +139,12 @@ export const ToDoList = () => {
 
                                 <div className="col-2 ms-auto">
 
-                                    <button className="btnEliminate">
+                                    <span >
                                         <i
-                                            className="fa-solid fa-x text-danger fs-3 showAndHiddenButton"
-                                            onClick={() => elimiteTask(item.id)}
+                                            className="fa-solid fa-x text-danger fs-3 showAndHiddenButton eliminateItem"
+                                            onClick={() => deleteTask(item.id)}
                                         ></i>
-                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -150,13 +152,13 @@ export const ToDoList = () => {
                     </div>
                 ))}
 
-                <div className="row">
-                    <div className="col-6 border-top border-secondary paper ps-2 p-1">
+                <div className="row paper">
+                    <div className="col-6 border-top border-secondary  ps-2 p-1">
                         <p className="itemBrandStyle m-auto">
                             {getTodos.length + " item left"}
                         </p>
                     </div>
-                    <div className="col-6 text-end border-top border-secondary paper p-1">
+                    <div className="col-6 text-end border-top border-secondary  p-1">
                         <button type="button" className="btn btnColor p-1 me-2 itemBrandStyle  m-auto"
                             onClick={() => deleteAllTasks()}>
                             Eliminar todas las tareas

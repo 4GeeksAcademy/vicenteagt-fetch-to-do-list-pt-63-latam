@@ -80,10 +80,10 @@ background-color: white;
     font-weight: 400;
 }
 
-.btnEliminate{
-     outline: none;  
+.btnColor:hover{
+    background-color: rgba(190, 64, 64, 0.689);
 }
 
-.btnEliminate:active{
-     outline: none;  
+.eliminateItem:active{
+box-shadow: 5px 2px 2px rgba(255, 0, 0, 0.432);
 }
