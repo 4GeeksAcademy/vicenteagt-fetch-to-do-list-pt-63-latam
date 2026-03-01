@@ -17,32 +17,38 @@ export const ToDoList = () => {
     // lógica fetchs
 
     const getMyUser = () => {
-        fetch(API_URL + "/users/vicente")
-            .then((response) => {
+    fetch(API_URL + "/users/vicente")
+        .then((response) => {
 
-                if (response.status === 404) {
-                    createUser();
-                }
+            if (response.status === 404) {
+                createUser();
+                return null; 
+            }
 
-                return response.json();
-            })
-            .then((data) => {
+            return response.json();
+        })
+        .then((data) => {
 
+            if (data) {
                 setGetTodos(data.todos);
-            })
-            .catch((error) => console.log("error:", error));
-    };
+            }
+
+        })
+        .catch((error) => console.log("error:", error));
+};
 
 
     const createUser = () => {
-        fetch(API_URL + "/users/vicente", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" }
+    fetch(API_URL + "/users/vicente", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+    })
+        .then(response => response.json())
+        .then(() => {
+            getMyUser();
         })
-            .then(response => response.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.log("error:", error));
-    };
+        .catch((error) => console.log("error:", error));
+};
 
 
     useEffect(() => {
@@ -74,17 +80,21 @@ export const ToDoList = () => {
 
     const deleteTask = (id) => {
 
-        fetch(API_URL + "/todos/" + id, {
-            method: "DELETE"
+    setGetTodos(prev => prev.filter(task => task.id !== id));
+
+    fetch(API_URL + "/todos/" + id, {
+        method: "DELETE"
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error deleting");
+            }
         })
-            .then(response => response.json())
-            .then((data) => { data })
-            .catch((error) => console.log("error:", error));
+        .catch((error) => {
+            console.log("error:", error);
 
-        getMyUser();
-
-
-    };
+        });
+};
 
     const deleteAllTasks = () => {
 
